@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guess the Song Game - Free Daily Music Quiz</title>
+  <meta name="description" content="Play a free guess the song game in your browser. Hear a melody, pick the song, use clever hints, and share your score.">
+  <meta name="keywords" content="guess the song game, song guesser game, music quiz, daily song game">
+  <meta property="og:title" content="Guess the Song Game - NoteGuess">
+  <meta property="og:url" content="https://guesssong.me/">
+  <meta property="og:description" content="A quick, free daily music quiz. Can you name all five melodies?"><meta property="og:type" content="website">
+  <meta name="theme-color" content="#f5f2ea">
+  <link rel="canonical" href="https://guesssong.me/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="share.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="NoteGuess home"><span class="brand-mark">♪</span><span>NOTE<span>GUESS</span></span></a>
+    <nav aria-label="Primary navigation"><a href="#how-it-works">How it works</a><a href="#faq">FAQ</a></nav>
+    <div class="header-pill"><i></i> Daily game <b id="header-date">Today</b></div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span>FREE BROWSER GAME</span><b>05 ROUNDS</b></p>
+        <h1 id="page-title">Can you<br><em>name that tune?</em></h1>
+        <p class="hero-lede">Listen to a melody, trust your first instinct, and build a perfect streak. A fresh five-round music quiz is ready every day.</p>
+        <div class="hero-meta"><span><strong>0</strong> sign-up</span><span><strong>∞</strong> replays</span><span><strong>↗</strong> shareable</span></div>
+      </div>
+      <div class="game-card" id="game" aria-live="polite">
+        <div class="game-topline"><span class="round-label">DAILY CHALLENGE <b id="round-number">01</b>/05</span><span class="score-label">SCORE <b id="score">000</b></span></div>
+        <div class="track-stage" id="track-stage">
+          <div class="stage-grid" aria-hidden="true"></div><div class="note-orbit" aria-hidden="true"><span>♪</span></div>
+          <p class="stage-kicker" id="track-genre">CLASSICAL</p><h2 id="track-prompt">What song is this?</h2>
+          <div class="waveform" id="waveform" aria-hidden="true"></div>
+          <button class="play-button" id="play-button" type="button" aria-label="Play melody"><span class="play-icon">▶</span><span id="play-label">Play clip</span></button>
+          <p class="listen-note" id="listen-note">Listen as many times as you need</p>
+        </div>
+        <div class="answer-area">
+          <div class="answer-heading"><span>Pick the title</span><button class="hint-button" id="hint-button" type="button">+ Hint <b id="hint-count">2</b></button></div>
+          <div class="answers" id="answers"></div>
+          <div class="feedback" id="feedback" role="status"></div>
+          <button class="next-button" id="next-button" type="button" hidden>Next melody <span>→</span></button>
+        </div>
+        <div class="progress" id="progress" aria-label="Round progress"></div>
+      </div>
+    </section>
+
+    <section class="share-strip" aria-label="Your game status">
+      <div><span class="strip-label">YOUR STREAK</span><strong id="streak">0 days</strong><small>Come back tomorrow for a new set</small></div>
+      <div class="share-actions" aria-label="Share your result"><a class="share-button share-x" id="share-x" href="#" target="_blank" rel="noopener" aria-label="Share on X"><span aria-hidden="true">X</span> Share on X</a><a class="share-button share-facebook" id="share-facebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook"><span aria-hidden="true">f</span> Facebook</a><button class="share-button share-copy" id="share-copy" type="button"><span aria-hidden="true">+</span> Copy result</button></div>
+    </section>
+
+    <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-intro"><p class="eyebrow">A LITTLE MUSIC BREAK</p><h2 id="how-title">Three ways to play<br><em>smarter.</em></h2><p>NoteGuess is a fast song guessing game made for headphones, coffee breaks, and friendly rivalries.</p></div>
+      <div class="steps"><article><span>01</span><h3>Hear the hook</h3><p>Press play for an original, public-domain melody arranged for this daily quiz.</p></article><article><span>02</span><h3>Use your instincts</h3><p>Choose from four titles. Spend a hint to reveal the genre or first letter.</p></article><article><span>03</span><h3>Share the result</h3><p>Finish all five rounds, then post your clean score without spoiling the answers.</p></article></div>
+    </section>
+
+    <section class="faq-section" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><p class="eyebrow">GOOD TO KNOW</p><h2 id="faq-title">Questions, answered.</h2></div><div class="faq-list"><details><summary>What is the guess the song game?</summary><p>It is a free browser music quiz where you hear a short melody and pick the song title. NoteGuess is a lightweight song guesser game with five daily rounds and no account.</p></details><details><summary>Do I need an account or an app?</summary><p>No. The game runs in your browser on desktop or mobile. Your score and streak are kept locally on this device.</p></details><details><summary>Are the songs copyrighted?</summary><p>The current demo uses original arrangements of public-domain melodies. We do not stream commercial recordings or upload audio files.</p></details><details><summary>Can I replay a melody?</summary><p>Yes. Replay the clip as often as you like before choosing an answer. Hints are optional and reduce the points for that round.</p></details></div></section>
+  </main>
+
+  <footer class="site-footer"><div><a class="brand" href="./"><span class="brand-mark">♪</span><span>NOTE<span>GUESS</span></span></a><p>A tiny daily music quiz for curious ears.</p></div><div class="footer-links"><a href="#how-it-works">How it works</a><a href="#faq">FAQ</a><a href="privacy.html">Privacy</a></div><small>© 2026 NoteGuess</small></footer>
+  <script src="app.js"></script>
+</body>
+</html>
