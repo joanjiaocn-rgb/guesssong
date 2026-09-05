@@ -68,6 +68,24 @@ function setListenNote(message) {
   $('listen-note').textContent = message;
 }
 
+function renderAnswerOptions(track) {
+  const answerList = $('answers');
+  const buttons = track.choices.map((choice, index) => {
+    const button = document.createElement('button');
+    const key = document.createElement('span');
+    key.textContent = String.fromCharCode(65 + index);
+    button.className = 'answer-option';
+    button.dataset.answer = choice;
+    button.type = 'button';
+    button.append(key, document.createTextNode(` ${choice}`));
+    button.addEventListener('click', () => choose(button));
+    return button;
+  });
+
+  answerList.hidden = false;
+  answerList.replaceChildren(...buttons);
+}
+
 async function unlockAudio() {
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
   if (!AudioContextClass) return false;
@@ -137,8 +155,7 @@ function render({ autoplay = false } = {}) {
   $('hint-button').disabled = hints === 0;
   $('hint-count').textContent = hints;
   setListenNote('Your melody starts automatically');
-  $('answers').innerHTML = track.choices.map((choice, i) => `<button class="answer-option" data-answer="${choice}" type="button"><span>${String.fromCharCode(65 + i)}</span>&nbsp; ${choice}</button>`).join('');
-  $('answers').querySelectorAll('button').forEach((button) => button.addEventListener('click', () => choose(button)));
+  renderAnswerOptions(track);
   $('progress').innerHTML = tracks.map((_, i) => `<i class="${i < round ? 'done ' : ''}${i === round ? 'active' : ''}"></i>`).join('');
   makeWaveform();
 
