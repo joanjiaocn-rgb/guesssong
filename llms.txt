@@ -1,0 +1,26 @@
+# NoteGuess
+
+> NoteGuess is a free browser-based Guess the Song Game at https://guesssong.me/.
+
+## What it does
+
+- Players hear five short synthesized arrangements and select song titles.
+- The current melody references are public-domain works; no commercial recordings are streamed.
+- Scores and daily streaks are stored locally in the player's browser.
+
+## Important pages
+
+- [Play Guess the Song Game](https://guesssong.me/): daily game, FAQ, sources, and structured data.
+- [About NoteGuess](https://guesssong.me/about.html): product scope, creator, and implementation summary.
+- [Source notes](https://guesssong.me/#sources): cited public-domain melody references.
+- [Privacy Policy](https://guesssong.me/privacy.html): local storage and data handling.
+- [Terms of Use](https://guesssong.me/terms.html): conditions for using the game.
+- [Contact](https://guesssong.me/contact.html): GitHub issue tracker for feedback.
+
+## Creator
+
+Created and maintained by Joan Jiao: https://github.com/joanjiaocn-rgb
+
+## Source repository
+
+https://github.com/joanjiaocn-rgb/guesssong

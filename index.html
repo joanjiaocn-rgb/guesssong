@@ -3,26 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Guess the Song Game - Free Daily Music Quiz</title>
-  <meta name="description" content="Play a free guess the song game in your browser. Hear a melody, pick the song, use clever hints, and share your score.">
+  <title>Guess the Song Game | Free Daily Music Quiz - NoteGuess</title>
+  <meta name="description" content="Play a free Guess the Song Game in your browser. Hear five public-domain melody arrangements, pick each title, and share your score.">
   <meta name="keywords" content="guess the song game, song guesser game, music quiz, daily song game">
-  <meta property="og:title" content="Guess the Song Game - NoteGuess">
-  <meta property="og:url" content="https://guesssong.me/">
-  <meta property="og:description" content="A quick, free daily music quiz. Can you name all five melodies?"><meta property="og:type" content="website">
-  <meta name="theme-color" content="#f5f2ea">
+  <meta name="author" content="Joan Jiao">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://guesssong.me/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta property="og:title" content="Guess the Song Game | NoteGuess">
+  <meta property="og:description" content="A quick, free daily music quiz. Can you name all five melodies?"><meta property="og:type" content="website">
+  <meta property="og:url" content="https://guesssong.me/"><meta property="og:site_name" content="NoteGuess">
+  <meta property="og:image" content="https://guesssong.me/assets/guesssong-social.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Piano keys and headphones for the NoteGuess daily music quiz">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Guess the Song Game | NoteGuess"><meta name="twitter:description" content="A quick, free daily music quiz. Can you name all five melodies?"><meta name="twitter:image" content="https://guesssong.me/assets/guesssong-social.jpg"><meta name="twitter:image:alt" content="Piano keys and headphones for the NoteGuess daily music quiz">
+  <meta name="theme-color" content="#f5f2ea">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="share.css">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="share.css"><link rel="stylesheet" href="trust.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="./" aria-label="NoteGuess home"><span class="brand-mark">♪</span><span>NOTE<span>GUESS</span></span></a>
-    <nav aria-label="Primary navigation"><a href="#how-it-works">How it works</a><a href="#faq">FAQ</a></nav>
+    <a class="brand" href="./" title="Play the NoteGuess daily game" aria-label="NoteGuess home"><span class="brand-mark">♪</span><span>NOTE<span>GUESS</span></span></a>
+    <nav aria-label="Primary navigation"><a href="#how-it-works" title="Learn how the game works">How it works</a><a href="#faq" title="Read NoteGuess frequently asked questions">FAQ</a><a href="#sources" title="See source notes and game ownership">Sources</a></nav>
     <div class="header-pill"><i></i> Daily game <b id="header-date">Today</b></div>
   </header>
-
   <main>
     <section class="hero" aria-labelledby="page-title">
       <div class="hero-copy">
@@ -38,32 +40,26 @@
           <p class="stage-kicker" id="track-genre">CLASSICAL</p><h2 id="track-prompt">What song is this?</h2>
           <div class="waveform" id="waveform" aria-hidden="true"></div>
           <button class="play-button" id="play-button" type="button" aria-label="Play melody"><span class="play-icon">▶</span><span id="play-label">Play clip</span></button>
-          <p class="listen-note" id="listen-note">Listen as many times as you need</p>
+          <p class="listen-note">Listen as many times as you need</p>
         </div>
         <div class="answer-area">
           <div class="answer-heading"><span>Pick the title</span><button class="hint-button" id="hint-button" type="button">+ Hint <b id="hint-count">2</b></button></div>
-          <div class="answers" id="answers"></div>
-          <div class="feedback" id="feedback" role="status"></div>
+          <div class="answers" id="answers"></div><div class="feedback" id="feedback" role="status"></div>
           <button class="next-button" id="next-button" type="button" hidden>Next melody <span>→</span></button>
-        </div>
-        <div class="progress" id="progress" aria-label="Round progress"></div>
+        </div><div class="progress" id="progress" aria-label="Round progress"></div>
       </div>
     </section>
 
-    <section class="share-strip" aria-label="Your game status">
-      <div><span class="strip-label">YOUR STREAK</span><strong id="streak">0 days</strong><small>Come back tomorrow for a new set</small></div>
-      <div class="share-actions" aria-label="Share your result"><a class="share-button share-x" id="share-x" href="#" target="_blank" rel="noopener" aria-label="Share on X"><span aria-hidden="true">X</span> Share on X</a><a class="share-button share-facebook" id="share-facebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook"><span aria-hidden="true">f</span> Facebook</a><button class="share-button share-copy" id="share-copy" type="button"><span aria-hidden="true">+</span> Copy result</button></div>
-    </section>
+    <section class="share-strip" aria-label="Your game status"><div><span class="strip-label">YOUR STREAK</span><strong id="streak">0 days</strong><small>Come back tomorrow for a new set</small></div><div class="share-actions" aria-label="Share your result"><a class="share-button share-x" id="share-x" href="#" target="_blank" rel="noopener noreferrer" title="Share your NoteGuess result on X" aria-label="Share on X"><span aria-hidden="true">X</span> Share on X</a><a class="share-button share-facebook" id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" title="Share your NoteGuess result on Facebook" aria-label="Share on Facebook"><span aria-hidden="true">f</span> Facebook</a><button class="share-button share-copy" id="share-copy" type="button" title="Copy your NoteGuess result"><span aria-hidden="true">+</span> Copy result</button></div></section>
 
-    <section class="how-section" id="how-it-works" aria-labelledby="how-title">
-      <div class="section-intro"><p class="eyebrow">A LITTLE MUSIC BREAK</p><h2 id="how-title">Three ways to play<br><em>smarter.</em></h2><p>NoteGuess is a fast song guessing game made for headphones, coffee breaks, and friendly rivalries.</p></div>
-      <div class="steps"><article><span>01</span><h3>Hear the hook</h3><p>Press play for an original, public-domain melody arranged for this daily quiz.</p></article><article><span>02</span><h3>Use your instincts</h3><p>Choose from four titles. Spend a hint to reveal the genre or first letter.</p></article><article><span>03</span><h3>Share the result</h3><p>Finish all five rounds, then post your clean score without spoiling the answers.</p></article></div>
-    </section>
+    <section class="how-section" id="how-it-works" aria-labelledby="how-title"><div class="section-intro"><p class="eyebrow">A LITTLE MUSIC BREAK</p><h2 id="how-title">How do you play<br><em>Guess the Song Game?</em></h2><p>NoteGuess is a fast song guessing game made for headphones, coffee breaks, and friendly rivalries.</p></div><div class="steps"><article><span>01</span><h3>Hear the hook</h3><p>Press play for an original browser arrangement of a public-domain melody.</p></article><article><span>02</span><h3>Use your instincts</h3><p>Choose from four titles. Spend a hint to reveal the genre or first letter.</p></article><article><span>03</span><h3>Share the result</h3><p>Finish all five rounds, then post your clean score without spoiling the answers.</p></article></div></section>
 
-    <section class="faq-section" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><p class="eyebrow">GOOD TO KNOW</p><h2 id="faq-title">Questions, answered.</h2></div><div class="faq-list"><details><summary>What is the guess the song game?</summary><p>It is a free browser music quiz where you hear a short melody and pick the song title. NoteGuess is a lightweight song guesser game with five daily rounds and no account.</p></details><details><summary>Do I need an account or an app?</summary><p>No. The game runs in your browser on desktop or mobile. Your score and streak are kept locally on this device.</p></details><details><summary>Are the songs copyrighted?</summary><p>The current demo uses original arrangements of public-domain melodies. We do not stream commercial recordings or upload audio files.</p></details><details><summary>Can I replay a melody?</summary><p>Yes. Replay the clip as often as you like before choosing an answer. Hints are optional and reduce the points for that round.</p></details></div></section>
+    <section class="trust-section" id="sources" aria-labelledby="sources-title"><div class="trust-lede"><p class="eyebrow">SOURCED AND TRANSPARENT</p><h2 id="sources-title">Where do the melodies<br>and game details come from?</h2><p>NoteGuess is built as a browser-only quiz. The current five rounds use short original arrangements of public-domain source melodies, rather than commercial recordings.</p><p class="byline">Created by <a href="https://github.com/joanjiaocn-rgb" title="Joan Jiao on GitHub" rel="author">Joan Jiao</a> · Published <time datetime="2026-09-04">September 4, 2026</time> · Updated <time datetime="2026-09-05">September 5, 2026</time></p></div><div class="source-panel"><img src="assets/guesssong-social.jpg" alt="Piano keys and headphones" width="1200" height="630"><div><p class="source-label">SOURCE NOTES</p><ul><li><a href="https://imslp.org/wiki/Symphony_No.9%2C_Op.125_(Beethoven%2C_Ludwig_van)" title="Read the public-domain score for Beethoven Symphony No. 9">Beethoven, Symphony No. 9</a> for “Ode to Joy”</li><li><a href="https://imslp.org/wiki/12_Variations_on_%22Ah_vous_dirai-je%2C_Maman%22%2C_K.265%2F300e_(Mozart%2C_Wolfgang_Amadeus)" title="Read Mozart variations on Ah vous dirai-je, Maman">Mozart, K.265/300e</a> for the “Twinkle” melody</li><li><a href="https://imslp.org/wiki/Jingle_Bells_(Pierpont%2C_James_Lord)" title="Read the public-domain score for Jingle Bells">Pierpont, Jingle Bells</a> for the seasonal round</li><li><a href="https://imslp.org/wiki/Greensleeves_(Traditional)" title="Read the public-domain score for Greensleeves">Traditional, Greensleeves</a> for the folk round</li></ul><p>These references identify source material only. NoteGuess plays its own synthesized arrangements in the browser.</p></div></div></section>
+
+    <section class="faq-section" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><p class="eyebrow">GOOD TO KNOW</p><h2 id="faq-title">What do players ask<br>about NoteGuess?</h2></div><div class="faq-list"><details><summary>What is the Guess the Song Game?</summary><p>It is a free browser music quiz where you hear a short melody and pick the song title. NoteGuess is a lightweight song guesser game with five daily rounds and no account.</p></details><details><summary>Do I need an account or an app?</summary><p>No. The game runs in your browser on desktop or mobile. Your score and streak are kept locally on this device.</p></details><details><summary>Are the songs copyrighted?</summary><p>The current demo plays synthesized arrangements of public-domain source melodies. It does not stream commercial recordings or upload audio files.</p></details><details><summary>Can I replay a melody?</summary><p>Yes. Replay the clip as often as you like before choosing an answer. Hints are optional and reduce the points for that round.</p></details><details><summary>How can I share feedback about the game?</summary><p>Use the <a href="contact.html" title="Contact the NoteGuess creator">contact page</a> to open a GitHub issue with an idea, bug report, or accessibility note.</p></details></div></section>
   </main>
-
-  <footer class="site-footer"><div><a class="brand" href="./"><span class="brand-mark">♪</span><span>NOTE<span>GUESS</span></span></a><p>A tiny daily music quiz for curious ears.</p></div><div class="footer-links"><a href="#how-it-works">How it works</a><a href="#faq">FAQ</a><a href="privacy.html">Privacy</a></div><small>© 2026 NoteGuess</small></footer>
+  <footer class="site-footer"><div><a class="brand" href="./" title="Return to the NoteGuess game"><span class="brand-mark">♪</span><span>NOTE<span>GUESS</span></span></a><p>A tiny daily music quiz for curious ears.</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="about.html" title="Learn about NoteGuess">About</a><a href="contact.html" title="Contact NoteGuess">Contact</a><a href="privacy.html" title="Read the NoteGuess privacy policy">Privacy</a><a href="terms.html" title="Read the NoteGuess terms of use">Terms</a><a href="llms.txt" title="Read NoteGuess machine-readable site information">LLMs.txt</a></nav><small>© 2026 NoteGuess</small></footer>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://guesssong.me/#organization","name":"NoteGuess","url":"https://guesssong.me/","sameAs":["https://github.com/joanjiaocn-rgb/guesssong"],"founder":{"@id":"https://guesssong.me/#person"}},{"@type":"Person","@id":"https://guesssong.me/#person","name":"Joan Jiao","url":"https://github.com/joanjiaocn-rgb","sameAs":["https://github.com/joanjiaocn-rgb"]},{"@type":"WebSite","@id":"https://guesssong.me/#website","name":"NoteGuess","url":"https://guesssong.me/","publisher":{"@id":"https://guesssong.me/#organization"}},{"@type":"WebPage","@id":"https://guesssong.me/#webpage","url":"https://guesssong.me/","name":"Guess the Song Game | NoteGuess","description":"A free daily browser music quiz built with synthesized arrangements of public-domain melodies.","datePublished":"2026-09-04","dateModified":"2026-09-05","author":{"@id":"https://guesssong.me/#person"},"publisher":{"@id":"https://guesssong.me/#organization"},"isPartOf":{"@id":"https://guesssong.me/#website"},"primaryImageOfPage":"https://guesssong.me/assets/guesssong-social.jpg","citation":["https://imslp.org/wiki/Symphony_No.9%2C_Op.125_(Beethoven%2C_Ludwig_van)","https://imslp.org/wiki/12_Variations_on_%22Ah_vous_dirai-je%2C_Maman%22%2C_K.265%2F300e_(Mozart%2C_Wolfgang_Amadeus)","https://imslp.org/wiki/Jingle_Bells_(Pierpont%2C_James_Lord)","https://imslp.org/wiki/Greensleeves_(Traditional)"]},{"@type":"WebApplication","name":"Guess the Song Game","applicationCategory":"GameApplication","operatingSystem":"Any","isAccessibleForFree":true,"url":"https://guesssong.me/","image":"https://guesssong.me/assets/guesssong-social.jpg","author":{"@id":"https://guesssong.me/#person"},"dateModified":"2026-09-05","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Guess the Song Game?","acceptedAnswer":{"@type":"Answer","text":"It is a free browser music quiz where you hear a short melody and pick the song title."}},{"@type":"Question","name":"Do I need an account or an app?","acceptedAnswer":{"@type":"Answer","text":"No. The game runs in a browser on desktop or mobile."}},{"@type":"Question","name":"Are the songs copyrighted?","acceptedAnswer":{"@type":"Answer","text":"The current demo plays synthesized arrangements of public-domain source melodies and does not stream commercial recordings."}},{"@type":"Question","name":"Can I replay a melody?","acceptedAnswer":{"@type":"Answer","text":"Yes. A melody can be replayed before choosing an answer."}}]}]}</script>
   <script src="app.js"></script>
 </body>
 </html>
