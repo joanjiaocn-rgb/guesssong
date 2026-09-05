@@ -37,7 +37,7 @@ function updateScore() {
 }
 
 function resultText() {
-  return `I scored ${score}/500 points in Guess the Song Game.\nCan you beat me? ${shareUrl}`;
+  return `I scored ${score}/500 in Guess the Song Game.\nTry NoteGuess — a free daily music quiz: ${shareUrl}\nCan you beat my score?`;
 }
 
 function setShareLinks() {
