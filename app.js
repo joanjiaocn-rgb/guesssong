@@ -7,6 +7,7 @@ const tracks = [
 ];
 let round = 0, score = 0, hints = 2, answered = false, audioContext = null, playing = false;
 const $ = (id) => document.getElementById(id);
+const trackEvent = (eventName, parameters = {}) => window.NoteGuessAnalytics?.track(eventName, parameters);
 const dayKey = new Date().toISOString().slice(0, 10);
 const saved = JSON.parse(localStorage.getItem('noteguess-state') || '{}');
 let streak = saved.lastDay === new Date(Date.now() - 86400000).toISOString().slice(0, 10) ? (saved.streak || 0) : (saved.lastDay === dayKey ? (saved.streak || 0) : 0);
@@ -26,10 +27,12 @@ function choose(button) {
   if (answered) return; answered = true; const track = tracks[round]; const correct = button.dataset.answer === track.title;
   document.querySelectorAll('.answer-option').forEach((option) => { option.disabled = true; if (option.dataset.answer === track.title) option.classList.add('correct'); }); if (!correct) button.classList.add('wrong');
   const points = correct ? Math.max(20, 100 - (2 - hints) * 20) : 0; score += points; $('score').textContent = String(score).padStart(3, '0');
+  trackEvent("guess_answer", { round_number: round + 1, genre: track.genre.toLowerCase(), is_correct: correct, points_awarded: points });
   $('feedback').innerHTML = correct ? `<strong>Nice ear.</strong> +${points} points` : `<strong>Not quite.</strong> It was <span class="hint">${track.title}</span>`; $('next-button').hidden = false; $('hint-button').disabled = true;
 }
 function playClip() {
   if (playing) return; playing = true; $('play-label').textContent = 'Playing...'; $('play-button').classList.add('is-playing'); const AudioContextClass = window.AudioContext || window.webkitAudioContext; if (!AudioContextClass) { playing = false; return; }
+  trackEvent("play_melody", { round_number: round + 1, genre: tracks[round].genre.toLowerCase() });
   audioContext ||= new AudioContextClass(); const now = audioContext.currentTime + .05; let time = now;
   tracks[round].notes.forEach(([frequency, duration]) => { const oscillator = audioContext.createOscillator(); const gain = audioContext.createGain(); oscillator.type = 'triangle'; oscillator.frequency.value = frequency; gain.gain.setValueAtTime(.0001, time); gain.gain.exponentialRampToValueAtTime(.18, time + .025); gain.gain.exponentialRampToValueAtTime(.0001, time + duration - .025); oscillator.connect(gain).connect(audioContext.destination); oscillator.start(time); oscillator.stop(time + duration); time += duration + .035; });
   setTimeout(() => { playing = false; $('play-label').textContent = 'Replay clip'; $('play-button').classList.remove('is-playing'); }, (time - now) * 1000 + 100);
@@ -37,7 +40,9 @@ function playClip() {
 function resultText() { return `NoteGuess ${dayKey}\n${score}/500 points\nA daily guess the song game for curious ears.`; }
 function setShareLinks() { const text = encodeURIComponent(resultText()); const url = encodeURIComponent(window.location.href); $('share-x').href = `https://twitter.com/intent/tweet?text=${text}`; $('share-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`; }
 $('play-button').addEventListener('click', playClip);
-$('hint-button').addEventListener('click', () => { if (answered || hints < 1) return; hints--; $('hint-count').textContent = hints; const track = tracks[round]; $('feedback').innerHTML = `<span class="hint">Hint:</span> this is a ${track.genre.toLowerCase()} melody. It begins with "${track.title[0]}".`; if (hints === 0) $('hint-button').disabled = true; });
-$('next-button').addEventListener('click', () => { if (round < tracks.length - 1) { round++; render(); } else { streak++; localStorage.setItem('noteguess-state', JSON.stringify({ lastDay: dayKey, streak })); $('streak').textContent = `${streak} days`; $('feedback').innerHTML = `<strong>Perfect, you made it.</strong> Final score: ${score}/500`; $('next-button').hidden = true; } });
-$('share-copy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(resultText()); $('share-copy').innerHTML = '<span aria-hidden="true">OK</span> Copied'; setTimeout(() => { $('share-copy').innerHTML = '<span aria-hidden="true">+</span> Copy result'; }, 1800); } catch {} });
+$('hint-button').addEventListener('click', () => { if (answered || hints < 1) return; hints--; $('hint-count').textContent = hints; const track = tracks[round]; trackEvent("use_hint", { round_number: round + 1, genre: track.genre.toLowerCase(), hints_remaining: hints }); $('feedback').innerHTML = `<span class="hint">Hint:</span> this is a ${track.genre.toLowerCase()} melody. It begins with "${track.title[0]}".`; if (hints === 0) $('hint-button').disabled = true; });
+$('next-button').addEventListener('click', () => { if (round < tracks.length - 1) { round++; render(); } else { streak++; localStorage.setItem('noteguess-state', JSON.stringify({ lastDay: dayKey, streak })); $('streak').textContent = `${streak} days`; $('feedback').innerHTML = `<strong>Perfect, you made it.</strong> Final score: ${score}/500`; $('next-button').hidden = true; trackEvent("game_complete", { final_score: score, streak_days: streak }); } });
+$('share-x').addEventListener('click', () => trackEvent("share_result", { share_method: "x", score }));
+$('share-facebook').addEventListener('click', () => trackEvent("share_result", { share_method: "facebook", score }));
+$('share-copy').addEventListener('click', async () => { try { await navigator.clipboard.writeText(resultText()); trackEvent("share_result", { share_method: "copy", score }); $('share-copy').innerHTML = '<span aria-hidden="true">OK</span> Copied'; setTimeout(() => { $('share-copy').innerHTML = '<span aria-hidden="true">+</span> Copy result'; }, 1800); } catch {} });
 setShareLinks(); render();
