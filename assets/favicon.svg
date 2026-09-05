@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">NoteGuess</title>
+  <desc id="desc">A white music note on a blue tile with a coral accent.</desc>
+  <rect width="64" height="64" rx="18" fill="#3157d5"/>
+  <circle cx="48" cy="15" r="6" fill="#e86f56"/>
+  <path fill="#fffdf7" d="M37 14v26.5a8.5 8.5 0 1 1-4-7.2V19.2l20-5.1v19.4a8.5 8.5 0 1 1-4-7.2V9z"/>
+</svg>
